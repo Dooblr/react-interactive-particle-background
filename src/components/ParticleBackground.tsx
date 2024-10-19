@@ -20,7 +20,7 @@ interface ParticleBackgroundProps {
 
 const ParticleBackground: React.FC<ParticleBackgroundProps> = ({
   particleColor = "255,255,255",
-  particleSpeed = 0.25,
+  particleSpeed = 0.1,
   particleCount = 80,
   attractionStrength = 2.0,
   deflection = true,
