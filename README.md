@@ -10,7 +10,11 @@ npm run dev
 
 ----------------------------------------------------------------------
 
-The two main components here are ParticleBackground.tsx and ParticleBackground.scss. The background component's position is absolute with a negative Z-index, so theoretically it will automatically be the background if the component is placed anywhere in your TSX (I recommend the top of your markup). If it doesn't show up, ensure that your html, body, and any container styles include background: transparent.
+The package includes two core components: ParticleBackground.tsx and ParticleBackground.scss.
+
+ParticleBackground.tsx provides an absolute-positioned background with a negative Z-index, allowing it to seamlessly function as the background of your application, regardless of where it is placed within your JSX. For best results, it's recommended to insert it at the top of your component tree.
+
+If the background is not displaying as expected, ensure that the html, body, and any container elements have their background property set to transparent. This will prevent any conflicts and ensure the particle background renders correctly.
 
 ----------------------------------------------------------------------
 
