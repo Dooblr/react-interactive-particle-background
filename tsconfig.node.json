@@ -1,3 +1,5 @@
+// src/tsconfig.node.json
+
 {
   "compilerOptions": {
     "target": "ES2022",

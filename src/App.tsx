@@ -1,10 +1,10 @@
-import ParticleBackground from "./ParticleBackground"
+import React from "react"
+import ParticleBackground from "./components/ParticleBackground"
 
 function App() {
-
   return (
     <>
-      <ParticleBackground />
+      <ParticleBackground particleColor="255, 255, 255" particleSpeed={2.0} />
     </>
   )
 }

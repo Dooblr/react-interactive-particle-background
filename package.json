@@ -1,30 +1,39 @@
 {
-  "name": "interactive-particle-background",
-  "private": true,
-  "version": "0.0.0",
+  "name": "react-interactive-particle-background",
+  "version": "1.0.9",
+  "description": "A customizable React particle background component.",
   "type": "module",
+  "main": "dist/particle-background.umd.js",
+  "module": "dist/particle-background.es.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "README.md"
+  ],
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "tsc -b && vite build && cp src/index.d.ts dist/",
     "lint": "eslint .",
     "preview": "vite preview"
   },
-  "dependencies": {
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+  "peerDependencies": {
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
   },
   "devDependencies": {
-    "@eslint/js": "^9.11.1",
-    "@types/react": "^18.3.10",
-    "@types/react-dom": "^18.3.0",
-    "@vitejs/plugin-react-swc": "^3.5.0",
-    "eslint": "^9.11.1",
-    "eslint-plugin-react-hooks": "^5.1.0-rc.0",
-    "eslint-plugin-react-refresh": "^0.4.12",
-    "globals": "^15.9.0",
-    "sass": "^1.80.3",
+    "@vitejs/plugin-react-swc": "^3.7.1",
+    "vite": "^5.4.8",
     "typescript": "^5.5.3",
-    "typescript-eslint": "^8.7.0",
-    "vite": "^5.4.8"
-  }
+    "@types/react": "^18.0.0",
+    "@types/react-dom": "^18.0.0",
+    "sass": "^1.80.3",
+    "eslint": "^9.11.1",
+    "eslint-plugin-react-hooks": "^5.1.0-rc.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dooblr/react-interactive-particle-background.git"
+  },
+  "author": "Daniel Feinstein",
+  "license": "MIT"
 }
