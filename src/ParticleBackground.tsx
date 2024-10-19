@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react"
-import "./ParticleCanvas.scss"
+import "./ParticleBackground.scss"
 
 interface Point {
   x: number
@@ -9,7 +9,7 @@ interface Point {
   dia: number
 }
 
-const ParticleCanvas: React.FC = () => {
+const ParticleBackground: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const points = useRef<Point[]>([]) // Ref to avoid rerender on points change
   const mousePoint = useRef<Point | null>(null) // Mouse point as a reference to track the mouse
@@ -152,4 +152,4 @@ const ParticleCanvas: React.FC = () => {
   )
 }
 
-export default ParticleCanvas
+export default ParticleBackground

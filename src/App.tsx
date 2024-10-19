@@ -1,10 +1,10 @@
-import ParticleCanvas from "./ParticleCanvas"
+import ParticleBackground from "./ParticleBackground"
 
 function App() {
 
   return (
     <>
-      <ParticleCanvas />
+      <ParticleBackground />
     </>
   )
 }
