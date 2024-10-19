@@ -25,6 +25,7 @@ ______________________________________________________________________
 
 # Usage
 
+```js
 import { ParticleBackground } from 'react-interactive-particle-background';
 
 const App = () => (
@@ -32,3 +33,4 @@ const App = () => (
 );
 
 export default App;
+```
