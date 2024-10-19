@@ -14,4 +14,4 @@ The two main components here are ParticleCanvas.tsx and ParticleCanvas.scss. The
 ----------------------------------------------------------------------
 
 # Demo Video
-Check out this YouTube demo to see the interactive particle background in action!
+Check out this <a href="https://www.youtube.com/watch?v=oWGoMnue1xI&ab_channel=drfeinstein">YouTube demo<a/> to see the interactive particle background in action!
