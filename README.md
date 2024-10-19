@@ -28,7 +28,7 @@ ______________________________________________________________________
 import { ParticleBackground } from 'react-interactive-particle-background';
 
 const App = () => (
-  < ParticleBackground />
+  <ParticleBackground particleColor="255, 255, 255" particleSpeed={2.0} />
 );
 
 export default App;

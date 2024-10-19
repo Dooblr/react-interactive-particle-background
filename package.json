@@ -1,6 +1,6 @@
 {
   "name": "react-interactive-particle-background",
-  "version": "1.0.9",
+  "version": "1.0.11",
   "description": "A customizable React particle background component.",
   "type": "module",
   "main": "dist/particle-background.umd.js",
