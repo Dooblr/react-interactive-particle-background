@@ -1,18 +1,17 @@
-// src/types/react-interactive-particle-background.d.ts
 declare module "react-interactive-particle-background" {
-  // Replace these with actual definitions based on how the library works
-  export interface ParticleBackgroundConfig {
-    color?: string
-    size?: number
-    // Add any other configuration options available
+  import { FC } from "react";
+
+  export interface ParticleBackgroundProps {
+    particleColor?: string;
+    particleSpeed?: number;
+    particleCount?: number;
+    attractionStrength?: number;
+    deflection?: boolean;
+    bokehEffect?: boolean;
+    backgroundGradient?: string; // Allow customizable background gradient
+    canvasZIndex?: number; // Control the z-index of the canvas
+    particleOpacity?: number; // Customize particle transparency
   }
 
-  export class ParticleBackground {
-    constructor(config: ParticleBackgroundConfig)
-    start(): void
-    stop(): void
-    // Add any other methods or properties used in your code
-  }
-
-  // Export other necessary parts of the library
+  export const ParticleBackground: FC<ParticleBackgroundProps>;
 }
