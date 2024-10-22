@@ -19,6 +19,7 @@ interface ParticleBackgroundProps {
   backgroundGradient?: string
   canvasZIndex?: number
   particleOpacity?: number
+  style?: React.CSSProperties
 }
 
 const ParticleBackground: React.FC<ParticleBackgroundProps> = ({
@@ -31,6 +32,7 @@ const ParticleBackground: React.FC<ParticleBackgroundProps> = ({
   backgroundGradient = "linear-gradient(to bottom, #000, #000)",
   canvasZIndex = -1090,
   particleOpacity = 1,
+  style = {},
 }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const points = useRef<Point[]>([])
@@ -70,7 +72,6 @@ const ParticleBackground: React.FC<ParticleBackgroundProps> = ({
 
   // Update the point's position based on velocity and mouse interaction
   const update = (obj: Point, canvasWidth: number, canvasHeight: number) => {
-    // Attraction/deflection logic
     if (mousePoint.current) {
       const distX = mousePoint.current.x - obj.x
       const distY = mousePoint.current.y - obj.y
@@ -87,7 +88,6 @@ const ParticleBackground: React.FC<ParticleBackgroundProps> = ({
       }
     }
 
-    // Regular velocity update
     obj.x += obj.vx
     obj.y += obj.vy
     if (obj.x > canvasWidth + maxDist / 2) obj.x = -(maxDist / 2)
@@ -127,7 +127,6 @@ const ParticleBackground: React.FC<ParticleBackgroundProps> = ({
     if (canvas) {
       ctx.clearRect(0, 0, canvas.width, canvas.height)
 
-      // If mouse exists, treat it as a point and interact with other points
       if (mousePoint.current) {
         collision(ctx, mousePoint.current, maxDist * 2)
         draw(ctx, mousePoint.current)
@@ -147,7 +146,7 @@ const ParticleBackground: React.FC<ParticleBackgroundProps> = ({
     if (canvas) {
       canvas.width = window.innerWidth
       canvas.height = window.innerHeight
-      generatePoints(particleCount) // Re-generate points when resizing
+      generatePoints(particleCount)
     }
   }
 
@@ -161,7 +160,7 @@ const ParticleBackground: React.FC<ParticleBackgroundProps> = ({
         y: event.clientY - rect.top,
         vx: 0,
         vy: 0,
-        dia: 4, // Mouse is slightly larger
+        dia: 4,
       }
     }
   }
@@ -172,12 +171,10 @@ const ParticleBackground: React.FC<ParticleBackgroundProps> = ({
     if (canvas) {
       const ctx = canvas.getContext("2d")
       if (ctx) {
-        // Set up canvas and events
         resizeCanvas()
         window.addEventListener("resize", resizeCanvas)
         canvas.addEventListener("mousemove", handleMouseMove)
 
-        // Animation loop
         const interval = setInterval(() => pointFun(ctx), 16)
 
         return () => {
@@ -199,7 +196,7 @@ const ParticleBackground: React.FC<ParticleBackgroundProps> = ({
   return (
     <div
       className="particle-container"
-      style={{ background: backgroundGradient }}
+      style={{ background: backgroundGradient, ...style }}
     >
       <canvas
         ref={canvasRef}

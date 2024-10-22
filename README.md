@@ -19,7 +19,7 @@ npm run dev
 
 The package includes two core files: ParticleBackground.tsx and ParticleBackground.scss.
 
-ParticleBackground.tsx provides an absolute-positioned background with a negative Z-index, allowing it to function as the background of your page, regardless of where it is placed within your JSX. For best results, it's recommended to insert it at the top of your component tree or whatever page you want it in.
+ParticleBackground.tsx provides an fixed-positioned background with a negative Z-index, allowing it to function as the background of your page, regardless of where it is placed within your JSX. For best results, it's recommended to insert it at the top of your component tree or whatever page you want it in, similar to a toast notification component.
 
 If the background is not displaying, ensure that the html, body, and any container elements have their background set to transparent. This will prevent any conflicts and ensure the particle background renders correctly.
 
@@ -31,7 +31,16 @@ If the background is not displaying, ensure that the html, body, and any contain
 import { ParticleBackground } from 'react-interactive-particle-background';
 
 const App = () => (
-  <ParticleBackground particleColor="255, 255, 255" particleSpeed={2.0} />
+  <ParticleBackground
+    particleColor="255, 255, 255"
+    particleSpeed={2.0}
+    attractionStrength={1}
+    deflection={true}
+    canvasZIndex={-1000}
+    particleOpacity={0.8}
+    bokehEffect={false} // TODO: FIX
+    style={{}}
+  />
 );
 
 export default App;
