@@ -9,9 +9,10 @@ function App() {
         particleSpeed={2.0}
         attractionStrength={1}
         deflection={true}
-        bokehEffect={false} // TODO: not functioning properly yet
+        bokehEffect={false}
         canvasZIndex={-1000}
         particleOpacity={0.8}
+        maxDistance={300}
       />
     </>
   )

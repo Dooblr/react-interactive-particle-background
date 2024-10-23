@@ -1,3 +1,5 @@
+//src/types/interactive-particle-background.d.ts
+
 declare module "react-interactive-particle-background" {
   import { FC } from "react"
 

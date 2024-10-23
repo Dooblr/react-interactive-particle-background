@@ -19,6 +19,7 @@ interface ParticleBackgroundProps {
   backgroundGradient?: string
   canvasZIndex?: number
   particleOpacity?: number
+  maxDistance?: number
   style?: React.CSSProperties
 }
 
@@ -33,20 +34,19 @@ const ParticleBackground: React.FC<ParticleBackgroundProps> = ({
   canvasZIndex = -1090,
   particleOpacity = 1,
   style = {},
+  maxDistance = 250,
 }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const points = useRef<Point[]>([])
   const mousePoint = useRef<Point | null>(null)
-
-  const maxDist = 250
 
   // Generate points based on the canvas size
   const generatePoints = (amount: number) => {
     const canvas = canvasRef.current
     if (canvas) {
       points.current = Array.from({ length: amount }, () => ({
-        x: Math.random() * (canvas.width + maxDist) - maxDist / 2,
-        y: Math.random() * (canvas.height + maxDist) - maxDist / 2,
+        x: Math.random() * (canvas.width + maxDistance) - maxDistance / 2,
+        y: Math.random() * (canvas.height + maxDistance) - maxDistance / 2,
         vx: (Math.random() * 1 - 0.5) * particleSpeed,
         vy: (Math.random() * 1 - 0.5) * particleSpeed,
         dia: Math.random() * 3 + 1,
@@ -77,7 +77,7 @@ const ParticleBackground: React.FC<ParticleBackgroundProps> = ({
       const distY = mousePoint.current.y - obj.y
       const distance = Math.sqrt(distX * distX + distY * distY)
 
-      if (distance < maxDist) {
+      if (distance < maxDistance) {
         const force = attractionStrength / distance
         const dirX = distX / distance
         const dirY = distY / distance
@@ -90,10 +90,10 @@ const ParticleBackground: React.FC<ParticleBackgroundProps> = ({
 
     obj.x += obj.vx
     obj.y += obj.vy
-    if (obj.x > canvasWidth + maxDist / 2) obj.x = -(maxDist / 2)
-    else if (obj.x < -(maxDist / 2)) obj.x = canvasWidth + maxDist / 2
-    if (obj.y > canvasHeight + maxDist / 2) obj.y = -(maxDist / 2)
-    else if (obj.y < -(maxDist / 2)) obj.y = canvasHeight + maxDist / 2
+    if (obj.x > canvasWidth + maxDistance / 2) obj.x = -(maxDistance / 2)
+    else if (obj.x < -(maxDistance / 2)) obj.x = canvasWidth + maxDistance / 2
+    if (obj.y > canvasHeight + maxDistance / 2) obj.y = -(maxDistance / 2)
+    else if (obj.y < -(maxDistance / 2)) obj.y = canvasHeight + maxDistance / 2
   }
 
   // Handle collisions between points
@@ -128,12 +128,12 @@ const ParticleBackground: React.FC<ParticleBackgroundProps> = ({
       ctx.clearRect(0, 0, canvas.width, canvas.height)
 
       if (mousePoint.current) {
-        collision(ctx, mousePoint.current, maxDist * 2)
+        collision(ctx, mousePoint.current, maxDistance * 2)
         draw(ctx, mousePoint.current)
       }
 
       points.current.forEach((p) => {
-        collision(ctx, p, maxDist)
+        collision(ctx, p, maxDistance)
         draw(ctx, p)
         update(p, canvas.width, canvas.height)
       })
@@ -191,6 +191,7 @@ const ParticleBackground: React.FC<ParticleBackgroundProps> = ({
     deflection,
     bokehEffect,
     particleOpacity,
+    maxDistance, // Added dependency to trigger updates when maxDistance changes
   ])
 
   return (
@@ -200,7 +201,6 @@ const ParticleBackground: React.FC<ParticleBackgroundProps> = ({
     >
       <canvas
         ref={canvasRef}
-        className="canvas"
         style={{ zIndex: canvasZIndex }}
       />
     </div>
