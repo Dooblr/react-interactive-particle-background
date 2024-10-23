@@ -20,12 +20,13 @@ interface ParticleBackgroundProps {
   canvasZIndex?: number
   particleOpacity?: number
   maxDistance?: number
+  bokehStrength?: number // Added bokeh strength prop
   style?: React.CSSProperties
 }
 
 const ParticleBackground: React.FC<ParticleBackgroundProps> = ({
   particleColor = "255,255,255",
-  particleSpeed = 0.1,
+  particleSpeed = 0.5,
   particleCount = 80,
   attractionStrength = 2.0,
   deflection = true,
@@ -34,7 +35,8 @@ const ParticleBackground: React.FC<ParticleBackgroundProps> = ({
   canvasZIndex = -1090,
   particleOpacity = 1,
   style = {},
-  maxDistance = 250,
+  maxDistance = 200,
+  bokehStrength = 1000, // Default bokeh strength
 }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const points = useRef<Point[]>([])
@@ -54,20 +56,25 @@ const ParticleBackground: React.FC<ParticleBackgroundProps> = ({
     }
   }
 
-  // Draw particles with optional simplified bokeh effect
+  // Draw particles with optional bokeh effect
   const draw = (ctx: CanvasRenderingContext2D, obj: Point) => {
-    ctx.beginPath()
+    ctx.save()
 
     if (bokehEffect) {
       const alpha = Math.min(1, obj.dia / 3)
       ctx.globalAlpha = alpha * particleOpacity
+      ctx.shadowColor = `rgba(${particleColor}, ${ctx.globalAlpha})`
+      ctx.shadowBlur = bokehStrength // Use the bokehStrength prop for shadow blur
     } else {
       ctx.globalAlpha = particleOpacity
     }
 
     ctx.fillStyle = `rgb(${particleColor})`
+    ctx.beginPath()
     ctx.arc(obj.x, obj.y, obj.dia, 0, 2 * Math.PI)
     ctx.fill()
+
+    ctx.restore() // Restore context state
   }
 
   // Update the point's position based on velocity and mouse interaction
@@ -191,7 +198,8 @@ const ParticleBackground: React.FC<ParticleBackgroundProps> = ({
     deflection,
     bokehEffect,
     particleOpacity,
-    maxDistance, // Added dependency to trigger updates when maxDistance changes
+    maxDistance,
+    bokehStrength,
   ])
 
   return (

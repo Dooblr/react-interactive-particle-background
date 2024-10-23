@@ -2,5 +2,8 @@
   position: fixed;
   top: 0;
   left: 0;
+  min-width: 100vw;
+  min-height: 100vh;
   z-index: -1090;
+  overflow: hidden;
 }

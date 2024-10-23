@@ -1,5 +1,3 @@
-//src/types/interactive-particle-background.d.ts
-
 declare module "react-interactive-particle-background" {
   import { FC } from "react"
 
@@ -10,10 +8,12 @@ declare module "react-interactive-particle-background" {
     attractionStrength?: number
     deflection?: boolean
     bokehEffect?: boolean
-    backgroundGradient?: string // Allow customizable background gradient
-    canvasZIndex?: number // Control the z-index of the canvas
-    particleOpacity?: number // Customize particle transparency
-    style? = Object
+    backgroundGradient?: string
+    canvasZIndex?: number
+    particleOpacity?: number
+    maxDistance?: number // Allow customizable max distance
+    bokehStrength?: number // Control the strength of the bokeh effect
+    style?: React.CSSProperties
   }
 
   export const ParticleBackground: FC<ParticleBackgroundProps>
